@@ -22,6 +22,28 @@ export default class Loader extends EventEmitter {
     this.emit('loaded');
   }
 
+  public async reloadAll(): Promise<void> {
+    await client.application?.commands.set([]);
+
+    await this.loadAll();
+
+    this.emit('reloaded');
+  }
+
+  public async reloadCommand(path: string): Promise<void> {
+    const command: BotCommand = new (await import(path)).default;
+
+    if (client.commands.has(command.name?.[0] ?? command.name)) {
+      const _command = (await client.application?.commands.fetch())?.find((comm) => comm.name = command.name?.[0] ?? command.name);
+      if (_command) await client.application?.commands.delete(_command!);
+    }
+
+    client.commands.set(command.name?.[0] ?? command.name, command);
+    await client.application?.commands.create(command.toJSON());
+
+    this.emit('reloadCommand', command);
+  }
+
   public async loadCommands(): Promise<void> {
     const paths: string[] = sync('/src/commands/**/*.{ts,js}').sort();
     const loaded: string[] = [];
@@ -49,6 +71,15 @@ export default class Loader extends EventEmitter {
     this.emit('commandsLoaded', loaded);
   }
 
+  public async reloadEvent(path: string): Promise<void> {
+    const event: BotEvent = new (await import(path)).default;
+
+    this.client.off(event.name as string, event.execute);
+    this.client[event.priority](event.name as string, event.execute);
+
+    this.emit('reloadEvent', event);
+  }
+
   public async loadEvents(): Promise<void> {
     const paths: string[] = sync('/src/events/**/*.{ts,js}').sort();
     const loaded: string[] = [];
@@ -58,7 +89,7 @@ export default class Loader extends EventEmitter {
 
       if (!event.name || !event.enabled || typeof event?.execute != 'function') continue;
 
-      this.client[event.priority](event.type, (...args: any) => event.execute(...args));
+      this.client[event.priority](event.type, event.execute);
 
       this.client.events.set(event.type, event);
 
