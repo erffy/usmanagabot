@@ -2,6 +2,11 @@ import type {
   Client
 } from '@client';
 
+import {
+  BotCommand as BC,
+  BotEvent as BE
+} from '@structures';
+
 import type {
   Client,
   EmbedBuilder,
@@ -19,6 +24,8 @@ import type {
 
 declare global {
   var client: Client;
+  var BotCommand: typeof BC;
+  var BotEvent: typeof BE;
 
   var Embed: typeof EmbedBuilder;
   var Button: typeof ButtonBuilder;
