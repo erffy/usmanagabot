@@ -7,7 +7,7 @@ import {
     SlashCommandBuilder,
 } from 'discord.js';
 import { DatabaseConnection } from '../../main';
-import { Afk } from '../../types/database/afk';
+import { AFK } from '../../types/database/afk';
 import { Guilds } from '../../types/database/guilds';
 import { Users } from '../../types/database/users';
 import { Command_t } from '../../types/interface/commands';
@@ -15,7 +15,7 @@ import { Logger } from '../../utils/logger';
 
 const exec = async (interaction: ChatInputCommandInteraction): Promise<void> => {
     const user_afk = await DatabaseConnection.manager
-        .findOne(Afk, {
+        .findOne(AFK, {
             where: { from_user: { uid: BigInt(interaction.user.id) } },
         })
         .catch((err) => {
@@ -34,7 +34,7 @@ const exec = async (interaction: ChatInputCommandInteraction): Promise<void> => 
         return;
     }
 
-    const afk = new Afk();
+    const afk = new AFK();
     const reason = interaction.options.getString('reason');
     const member: GuildMember = interaction.member as GuildMember;
 
@@ -84,7 +84,7 @@ const ExecWhenEvent = async (event_name: string, message: Message) => {
     switch (event_name) {
         case 'messageCreate': {
             const user_afk = await DatabaseConnection.manager
-                .findOne(Afk, {
+                .findOne(AFK, {
                     where: { from_user: { uid: BigInt(message.author.id) } },
                 })
                 .catch((err) => {
@@ -124,7 +124,7 @@ const ExecWhenEvent = async (event_name: string, message: Message) => {
 
             for (const mention of message.mentions.users) {
                 const mentioned_user_afk = await DatabaseConnection.manager
-                    .findOne(Afk, {
+                    .findOne(AFK, {
                         where: { from_user: { uid: BigInt(mention[0]) } },
                     })
                     .catch((err) => {

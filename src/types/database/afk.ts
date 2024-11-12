@@ -3,7 +3,7 @@ import { Guilds } from './guilds';
 import { Users } from './users';
 
 @Entity()
-export class Afk {
+export class AFK {
     @PrimaryGeneratedColumn({ type: 'smallint' })
     id: number;
 
