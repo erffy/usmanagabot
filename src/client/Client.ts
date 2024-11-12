@@ -2,6 +2,7 @@ import { Client as BaseClient, Collection, Partials } from 'discord.js';
 import Database from './Database';
 import Loader from './Loader';
 
+import bot_config from '../../config/bot.json';
 import database_config from '../../config/database.json';
 
 import type { BotEvent, BotCommand } from '@structures';
@@ -22,7 +23,8 @@ export default class Client extends BaseClient {
 
     (async () => {
       await this.database.initialize();
-      
+      await this!.loader.loadAll();
+      await this.login(bot_config.token);
     })();
   }
 }
