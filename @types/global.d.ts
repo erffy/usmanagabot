@@ -8,7 +8,6 @@ import {
 } from '@structures';
 
 import type {
-  Client,
   EmbedBuilder,
   ButtonBuilder,
   ModalBuilder,
