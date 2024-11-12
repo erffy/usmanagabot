@@ -30,16 +30,16 @@ export default class Loader extends EventEmitter {
     this.emit('reloaded');
   }
 
-  public async reloadCommand(path: string): Promise<void> {
+  public async reloadCommand(path: string, guild?: bigint): Promise<void> {
     const command: BotCommand = new (await import(path)).default;
 
     if (client.commands.has(command.name?.[0] ?? command.name)) {
       const _command = (await client.application?.commands.fetch())?.find((comm) => comm.name = command.name?.[0] ?? command.name);
-      if (_command) await client.application?.commands.delete(_command!);
+      if (_command) await client.application?.commands.delete(_command!, guild ? guild.toString() : undefined);
     }
 
     client.commands.set(command.name?.[0] ?? command.name, command);
-    await client.application?.commands.create(command.toJSON());
+    await client.application?.commands.create(command.toJSON(), guild ? guild.toString() : undefined);
 
     this.emit('reloadCommand', command);
   }
