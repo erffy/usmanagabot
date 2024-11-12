@@ -27,7 +27,7 @@ export default class Loader extends EventEmitter {
     const loaded: string[] = [];
 
     for (const path of paths) {
-      const command: BotCommand = (await import(path)).default;
+      const command: BotCommand = new (await import(path)).default;
 
       if (!command.name || !command.enabled || typeof command?.execute != 'function') continue;
       if (!command.category) {
@@ -54,7 +54,7 @@ export default class Loader extends EventEmitter {
     const loaded: string[] = [];
 
     for (const path of paths) {
-      const event: BotEvent = (await import(path)).default;
+      const event: BotEvent = new (await import(path)).default;
 
       if (!event.name || !event.enabled || typeof event?.execute != 'function') continue;
 
