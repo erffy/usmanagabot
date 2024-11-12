@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events';
+import { TypedEventEmitter } from 'typeorm';
 
 import BotCommand from '../structures/Command';
 import BotEvent from '../structures/Event';
@@ -6,7 +6,7 @@ import sync from '../utils/sync';
 
 import type { Client } from './Client';
 
-export default class Loader extends EventEmitter {
+export default class Loader extends TypedEventEmitter<LoaderEvents> {
   protected readonly client: Client;
 
   public constructor(client: Client) {
