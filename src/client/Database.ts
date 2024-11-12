@@ -19,9 +19,9 @@ export default class Database extends DataSource {
       password: config.password,
       synchronize: config.synchronize,
       logging: config.logging,
-      entities: sync('@types/database/*.ts'),
-      subscribers: sync('@types/database/subscribers/*.ts'),
-      migrations: sync('@types/database/migrations/*.ts'),
+      entities: sync('../types/database/*.ts'),
+      subscribers: sync('../types/database/subscribers/*.ts'),
+      migrations: sync('../types/database/migrations/*.ts'),
     })
   };
 
