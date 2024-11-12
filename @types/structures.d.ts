@@ -1,26 +1,15 @@
 // Command.ts
 interface BotCommandImplementation {
-  public readonly name: string | string[];
-  public readonly description: string;
+  public readonly data: import('discord.js').ChatInputApplicationCommandData;
   public readonly enabled: boolean;
   public readonly type: BotCommandTypes;
   public readonly category: BotCommandCategories;
-  public readonly permissions: import('discord.js').PermissionResolvable;
   public readonly cooldown: number;
-  public toJSON(): import('discord.js').ApplicationCommandDataResolvable;
   public abstract execute(...args: any[]): Promise<void>;
 }
 
 interface BotCommandOptions {
-  /**
-   * Command name(s)
-   */
-  name: string | string[];
-
-  /**
-   * Command description
-   */
-  description: string;
+  data: import('discord.js').ChatInputApplicationCommandData;
 
   /**
    * Set status of command
@@ -39,12 +28,6 @@ interface BotCommandOptions {
    * @default undefined
    */
   category?: BotCommandCategories;
-
-  /**
-   * Set permissions of command
-   * @default []
-   */
-  permissions?: import('discord.js').PermissionResolvable
 
   /**
    * Set cooldown of command
