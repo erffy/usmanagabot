@@ -1,5 +1,6 @@
 import type { 
-  Client
+  Client,
+  Logger
 } from '@client';
 
 import {
@@ -23,6 +24,8 @@ import type {
 
 declare global {
   var client: Client;
+  var logger: Logger;
+  
   var BotCommand: typeof BC;
   var BotEvent: typeof BE;
 
