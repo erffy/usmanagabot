@@ -1,0 +1,10 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": "5432",
+  "username": "usmanagabot",
+  "password": "usmanagabot",
+  "database": "usmanagabot",
+  "synchronize": true,
+  "logging": true
+}

@@ -22,4 +22,5 @@ node_modules/
 
 config/*
 !config/*-example.yml
+!config/*.json
 dist/*
