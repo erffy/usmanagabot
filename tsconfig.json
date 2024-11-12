@@ -32,10 +32,16 @@
         ],
         "@structures": [
           "src/structures/_root.ts"
+        ],
+        "@typeorm/database": [
+          "src/types/database.ts"
+        ],
+        "@typeorm/interface": [
+          "src/types/interface.ts"
         ]
       }
     },
     "exclude": [
       "node_modules"
     ]
-  }
+}
