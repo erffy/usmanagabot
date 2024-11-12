@@ -13,7 +13,7 @@ export default abstract class BotEvent<K extends keyof ClientEvents = keyof Clie
     this.priority = options?.priority ?? 'on';
   }
 
-  public abstract execute(...args: ClientEvents[K]): Awaitable<void>;
+  public abstract execute(...args: ClientEvents[K]): Awaitable<any>;
 }
 
 export { BotEvent };

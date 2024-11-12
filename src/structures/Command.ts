@@ -15,7 +15,7 @@ export default abstract class BotCommand implements BotCommandImplementation {
     this.cooldown = options?.cooldown ?? 0;
   }
 
-  public abstract execute(...args: any[]): Promise<void>;
+  public abstract execute(...args: any[]): Promise<any>;
 }
 
 export { BotCommand };
