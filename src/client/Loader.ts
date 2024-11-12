@@ -33,13 +33,13 @@ export default class Loader extends EventEmitter {
   public async reloadCommand(path: string, guild?: bigint): Promise<void> {
     const command: BotCommand = new (await import(path)).default;
 
-    if (client.commands.has(command.name?.[0] ?? command.name)) {
-      const _command = (await client.application?.commands.fetch())?.find((comm) => comm.name = command.name?.[0] ?? command.name);
+    if (client.commands.has(command.data.name)) {
+      const _command = (await client.application?.commands.fetch())?.find((comm) => comm.name = command.data.name);
       if (_command) await client.application?.commands.delete(_command!, guild ? guild.toString() : undefined);
     }
 
-    client.commands.set(command.name?.[0] ?? command.name, command);
-    await client.application?.commands.create(command.toJSON(), guild ? guild.toString() : undefined);
+    client.commands.set(command.data.name, command);
+    await client.application?.commands.create(command.data, guild ? guild.toString() : undefined);
 
     this.emit('reloadCommand', command);
   }
@@ -51,7 +51,7 @@ export default class Loader extends EventEmitter {
     for (const path of paths) {
       const command: BotCommand = new (await import(path)).default;
 
-      if (!command.name || !command.enabled || typeof command?.execute != 'function') continue;
+      if (!command.data.name || !command.enabled || typeof command?.execute != 'function') continue;
       if (!command.category) {
         let splitted: string[];
 
@@ -62,9 +62,9 @@ export default class Loader extends EventEmitter {
         command.category = splitted[2];
       }
 
-      this.client.commands.set(command.name?.[0] ?? command.name, command);
+      this.client.commands.set(command.data.name, command);
 
-      loaded.push(command.name?.[0] ?? command.name);
+      loaded.push(command.data.name);
       this.emit('commandLoad', command);
     }
 
