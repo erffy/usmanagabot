@@ -5,46 +5,46 @@
     "module": "src/main.ts",
     "type": "module",
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/mt190502/usmanagabot.git"
+        "type": "git",
+        "url": "git+https://github.com/mt190502/usmanagabot.git"
     },
     "keywords": [
-      "bot",
-      "discord",
-      "typescript",
-      "djs",
-      "discordjs"
+        "bot",
+        "discord",
+        "typescript",
+        "djs",
+        "discordjs"
     ],
     "author": "Taha (mt190502)",
     "license": "GPL-3.0",
     "bugs": {
-      "url": "https://github.com/mt190502/usmanagabot/issues"
+        "url": "https://github.com/mt190502/usmanagabot/issues"
     },
     "homepage": "https://github.com/mt190502/usmanagabot#readme",
     "dependencies": {
-      "dayjs": "~1.11.13",
-      "discord.js": "~14.16.3",
-      "glob": "~11.0.0",
-      "graceful-fs": "^4.2.11",
-      "pg": "~8.13.1",
-      "reflect-metadata": "~0.2.2",
-      "typeorm": "~0.3.20",
-      "uuid": "~11.0.2",
-      "yaml": "~2.6.0"
+        "chalk": "^5.3.0",
+        "dayjs": "~1.11.13",
+        "discord.js": "~14.16.3",
+        "glob": "~11.0.0",
+        "graceful-fs": "^4.2.11",
+        "pg": "~8.13.1",
+        "reflect-metadata": "~0.2.2",
+        "typeorm": "~0.3.20",
+        "uuid": "~11.0.2"
     },
     "devDependencies": {
-      "@types/bun": "latest",
-      "@types/graceful-fs": "latest",
-      "@types/uuid": "latest",
-      "globals": "latest",
-      "prettier": "latest",
-      "typescript": "~5.6.3"
+        "@types/bun": "latest",
+        "@types/graceful-fs": "latest",
+        "@types/uuid": "latest",
+        "globals": "latest",
+        "prettier": "latest",
+        "typescript": "~5.6.3"
     },
     "scripts": {
-      "depInstall": "bun update",
-      "prettier": "prettier --config .prettierrc.json 'src/**/*.ts'",
-      "prettier:fix": "prettier --config .pretterrc.json 'src/**/*.ts' --write",
-      "start": "bun run src/main.ts",
-      "test": "bun run src/utils/configParser.ts"
+        "depInstall": "bun update",
+        "prettier": "prettier --config .prettierrc.json 'src/**/*.ts'",
+        "prettier:fix": "prettier --config .pretterrc.json 'src/**/*.ts' --write",
+        "start": "bun run src/main.ts",
+        "test": "bun run src/utils/configParser.ts"
     }
-  }
+}
