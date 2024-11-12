@@ -34,7 +34,7 @@
     },
     "devDependencies": {
       "@types/bun": "latest",
-      "@types/graceful-fs": "^4.1.9",
+      "@types/graceful-fs": "latest",
       "@types/uuid": "latest",
       "globals": "latest",
       "prettier": "latest",
