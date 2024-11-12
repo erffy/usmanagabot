@@ -5,6 +5,7 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 test.js
+bun.lockb
 
 pids
 *.pid
