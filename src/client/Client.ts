@@ -4,9 +4,11 @@ import Loader from './Loader';
 
 import database_config from '../../config/database.json';
 
+import type { BotEvent, BotCommand } from '@structures';
+
 export default class Client extends BaseClient {
-  public readonly commands: Collection<string, BotCommandImplementation> = new Collection();
-  public readonly events: Collection<string, BotEventImplementation> = new Collection();
+  public readonly commands: Collection<string, BotCommand> = new Collection();
+  public readonly events: Collection<string, BotEvent> = new Collection();
   public readonly database: Database = new Database(database_config);
   public readonly loader: Loader;
 
