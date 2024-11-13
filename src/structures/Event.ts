@@ -1,7 +1,7 @@
-import type { Awaitable, ClientEvents } from 'discord.js';
+import type { Awaitable, Events, ClientEvents } from 'discord.js';
 
 export default abstract class BotEvent<K extends keyof ClientEvents = keyof ClientEvents> implements BotEventImplementation {
-  public readonly type: keyof ClientEvents;
+  public readonly type: keyof ClientEvents | Events;
   public readonly name?: string;
   public readonly enabled: boolean;
   public readonly priority: BotEventPriority;

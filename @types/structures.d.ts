@@ -43,7 +43,7 @@ type BotCommandCategories = undefined | 'admin' | 'core' | 'game' | 'misc' | 'to
 
 // Event.ts
 interface BotEventImplementation {
-  public readonly type: keyof import('discord.js').ClientEvents;
+  public readonly type: keyof import('discord.js').ClientEvents | import('discord.js').Events;
   public readonly name?: string;
   public readonly enabled: boolean;
   public readonly priority: BotEventPriority;
@@ -54,7 +54,7 @@ interface BotEventOptions {
   /**
    * Set type of event
    */
-  type: keyof import('discord.js').ClientEvents;
+  type: keyof import('discord.js').ClientEvents | import('discord.js').Events;
 
   /**
    * Set name of event
